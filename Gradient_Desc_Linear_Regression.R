@@ -18,11 +18,11 @@ grad.desc <- function(x, y, alpha = 0.5, k = 1000) {
         m <- nrow(x)
         
         for (i in 1:k) {
-                B <- matrix( c(0, 0), nrow = 2, ncol = 1)
+                B <- matrix( rep(0, ncol(x)), nrow = ncol(x), ncol = 1)
                 
-                B <- B - (alpha)*(((1/m) * 2 * t(x)) %*% (y - ((x)%*%B)))
+                B <- B - (alpha)*(((1/m) * 2 * t(x)) %*% (((x)%*%B) - Y))
                 
-                if (identical ((y - (x %*% B)), as.matrix( rep(50), nrow = 50, ncol = 1))) {
+                if (identical ((y - (x %*% B)), as.matrix( rep(0, nrow(x)), nrow = nrow(x), ncol = 1))) {
                         break    
                 }
                 
