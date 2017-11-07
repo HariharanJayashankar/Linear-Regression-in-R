@@ -34,7 +34,7 @@ for(i in 1:1000){
     
     B <- matrix( c(0, 0), nrow = 2, ncol = 1)
     
-    B <- B + (0.5)*(((1/m) * 2 * t(X.scaled)) %*% (Y - ((X.scaled)%*%B)))
+    B <- B - (0.5)*(((1/m) * 2 * t(X.scaled)) %*% (((X.scaled)%*%B) - Y))
     
         if (identical ((Y - (X.scaled %*% B)), as.matrix( rep(50), nrow = 50, ncol = 1))) {
             break    
